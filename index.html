@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BUFS 전공 길잡이</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+:root{
+  --bg:#f6f7fb; --surface:#fff; --surface-2:#eef1f8; --text:#16192b; --muted:#5d6380;
+  --line:#dde1ee; --brand:#1c23e8; --brand-soft:#e5e7ff; --accent:#d90077;
+  --radius:14px; --shadow:0 1px 2px rgba(20,25,60,.06),0 4px 16px rgba(20,25,60,.06);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f111a; --surface:#181b27; --surface-2:#222636; --text:#eceefa; --muted:#9aa0bd;
+  --line:#2c3145; --brand:#8f94ff; --brand-soft:#262a55; --accent:#ff5fae; --shadow:none; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0f111a; --surface:#181b27; --surface-2:#222636; --text:#eceefa; --muted:#9aa0bd;
+  --line:#2c3145; --brand:#8f94ff; --brand-soft:#262a55; --accent:#ff5fae; --shadow:none; color-scheme:dark;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:"Noto Sans KR",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6;word-break:keep-all}
+a{color:var(--brand)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.bar{display:flex;align-items:center;gap:16px;height:60px}
+.logo{font-weight:800;font-size:18px;color:var(--text);text-decoration:none;white-space:nowrap}
+.logo b{color:var(--brand)}
+nav{display:flex;gap:4px;margin-left:auto}
+nav a{padding:6px 12px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:600;font-size:14px}
+nav a.on{background:var(--brand-soft);color:var(--brand)}
+.hero{padding:36px 0 20px}
+.hero h1{margin:0 0 6px;font-size:clamp(24px,4vw,34px);letter-spacing:-.02em}
+.hero p{margin:0;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:20px 0 8px}
+.search{flex:1 1 260px;display:flex;align-items:center;gap:8px;background:var(--surface);
+  border:1px solid var(--line);border-radius:12px;padding:0 14px}
+.search input{border:0;outline:0;background:transparent;color:var(--text);font:inherit;padding:11px 0;width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 18px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;
+  padding:6px 13px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.college{margin:26px 0 10px;font-size:15px;color:var(--muted);font-weight:700;display:flex;gap:8px;align-items:center}
+.college span{font-weight:500;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;
+  text-align:left;font:inherit;color:inherit;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .12s,border-color .12s;display:flex;flex-direction:column;gap:8px}
+.card:hover,.card:focus-visible{transform:translateY(-2px);border-color:var(--brand);outline:0}
+.card h3{margin:0;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:13.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:auto}
+.tag{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:6px;background:var(--surface-2);color:var(--muted)}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+/* detail */
+.back{display:inline-flex;gap:6px;align-items:center;margin:22px 0 8px;color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+.dhead{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.dhead .kicker{color:var(--accent);font-weight:700;font-size:13px}
+.dhead h1{margin:2px 0 10px;font-size:clamp(24px,4vw,32px);letter-spacing:-.02em}
+.links{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);
+  background:var(--surface-2);color:var(--text);text-decoration:none;font-size:14px;font-weight:600}
+.tabs{display:flex;gap:4px;overflow-x:auto;margin:16px 0 0;padding-bottom:2px;scrollbar-width:none}
+.tabs button{flex:0 0 auto;border:0;background:transparent;color:var(--muted);font:inherit;font-weight:700;
+  padding:10px 14px;border-bottom:2px solid transparent;cursor:pointer}
+.tabs button.on{color:var(--brand);border-color:var(--brand)}
+.tabs button .n{font-size:11px;background:var(--surface-2);border-radius:6px;padding:1px 6px;margin-left:4px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin:10px 0 40px;box-shadow:var(--shadow)}
+.panel h2{font-size:18px;margin:22px 0 8px}
+.panel h2:first-child{margin-top:0}
+.prose{white-space:pre-line}
+.note{color:var(--muted);font-size:13px}
+.src{font-size:12.5px;color:var(--muted)}
+.year{margin:20px 0 8px;font-weight:800;font-size:16px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl th{color:var(--muted);font-weight:600;font-size:12.5px;background:var(--surface-2)}
+.tbl td.c{white-space:nowrap;color:var(--muted);font-size:12.5px}
+.tblwrap{overflow-x:auto}
+.list{margin:0;padding-left:18px}
+.list li{margin:4px 0}
+details{border:1px solid var(--line);border-radius:10px;padding:0 14px;margin:8px 0;background:var(--surface)}
+summary{cursor:pointer;font-weight:700;padding:12px 0}
+details .prose{padding-bottom:14px}
+.profs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.prof{border:1px solid var(--line);border-radius:10px;padding:12px}
+.prof b{display:block}
+.prof small{color:var(--muted);display:block;white-space:pre-line;font-size:12.5px}
+.site-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.site{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text)}
+.site small{display:block;color:var(--muted);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* quiz */
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--brand-soft);
+  border-radius:var(--radius);padding:16px 18px;margin-top:18px}
+.cta b{display:block}
+.cta span{color:var(--muted);font-size:14px}
+.btn-primary{background:var(--brand);border-color:var(--brand);color:#fff;cursor:pointer;font:inherit;font-weight:700}
+.btn-primary:disabled{opacity:.45;cursor:not-allowed}
+.progress{position:sticky;top:calc(60px + env(safe-area-inset-top,0px));z-index:4;background:var(--bg);padding:10px 0}
+.progress .track{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.progress .fill{height:100%;background:var(--brand);transition:width .2s}
+.progress small{color:var(--muted);font-size:12.5px}
+.qsec{margin:22px 0 8px;font-weight:800;color:var(--accent);font-size:14px}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin:8px 0}
+.qcard.done{border-color:color-mix(in srgb,var(--brand) 40%,var(--line))}
+.qcard p{margin:0 0 12px;font-weight:600}
+.likert{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.likert label{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11.5px;color:var(--muted);cursor:pointer;text-align:center}
+.likert input{position:absolute;opacity:0;pointer-events:none}
+.likert .dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:var(--surface);transition:.12s}
+.likert label:nth-child(1) .dot,.likert label:nth-child(5) .dot{width:36px;height:36px}
+.likert input:checked + .dot{background:var(--brand);border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-soft)}
+.likert input:focus-visible + .dot{outline:2px solid var(--brand);outline-offset:2px}
+.dims{display:grid;gap:8px}
+.dim{display:grid;grid-template-columns:100px 1fr 40px;gap:10px;align-items:center;font-size:14px}
+.dim .bar{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.dim .bar i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.dim em{font-style:normal;color:var(--muted);font-size:12.5px;text-align:right}
+.rank{display:grid;gap:10px}
+.rcard{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:14px 16px;text-decoration:none;color:inherit}
+.rcard:hover{border-color:var(--brand)}
+.rcard .no{font-size:22px;font-weight:800;color:var(--brand);text-align:center}
+.rcard > div{min-width:0}
+.rcard h3{margin:0;font-size:16px}
+.rcard small{color:var(--muted);font-size:13px}
+.rcard .pct{font-size:20px;font-weight:800}
+.mini{display:flex;flex-wrap:wrap;gap:6px}
+.mini a{font-size:13px;padding:5px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--text)}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:6px 0 14px}
+.mode{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.mode-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mode h2{margin:0;font-size:20px}
+.mode p{margin:0;color:var(--muted)}
+.mode .btn{align-self:flex-start;margin-top:auto}
+.steps{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0 8px}
+.steps span{font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
+.steps span.on{background:var(--brand);color:#fff}
+.steps span.past{background:var(--brand-soft);color:var(--brand)}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:stretch}
+.pair .vs{align-self:center;color:var(--muted);font-size:12px;font-weight:700}
+.opt{border:2px solid var(--line);background:var(--surface);color:var(--text);border-radius:12px;padding:14px;font:inherit;font-weight:600;cursor:pointer;text-align:center;line-height:1.45}
+.opt:hover{border-color:var(--brand)}
+.opt.on{border-color:var(--brand);background:var(--brand-soft);color:var(--brand)}
+.conds{display:grid;gap:10px}
+.cond{display:flex;gap:10px;align-items:center;font-weight:600;cursor:pointer}
+.cond input{width:18px;height:18px;accent-color:var(--brand)}
+.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.val{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.val small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.hints{margin-top:8px;display:grid;gap:4px;font-size:13px;color:var(--text)}
+.hints b{color:var(--accent);font-size:12px;margin-right:4px}
+.dlg-back{position:fixed;inset:0;z-index:20;background:rgba(10,12,30,.45);display:grid;place-items:center;padding:16px}
+.dlg{background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:var(--radius);padding:22px;max-width:380px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+.dlg p{margin:0 0 18px;font-weight:600}
+.dlg-btns{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.btn-danger{background:var(--accent);border-color:var(--accent);color:#fff;cursor:pointer;font:inherit;font-weight:700}
+.btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.mode-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.radars{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:8px 20px;margin:4px 0 6px}
+.radar{position:relative;margin:0}
+.radar figcaption{font-weight:800;text-align:center;font-size:15px;margin-bottom:2px}
+.radar svg{display:block;width:100%;max-width:440px;height:auto;margin:0 auto;overflow:visible}
+.radar .rg{fill:none;stroke:var(--line);stroke-width:1}
+.radar .rt{fill:var(--muted);font-size:10px}
+.radar .rarea{fill:var(--brand);fill-opacity:.16;stroke:var(--brand);stroke-width:2;stroke-linejoin:round}
+.radar .rdot{fill:var(--brand);stroke:var(--surface);stroke-width:2}
+.radar .rl{fill:var(--muted);font-size:12.5px}
+.radar .rl-top{fill:var(--text);font-size:13px;font-weight:800}
+.radar .rhit{fill:var(--brand);fill-opacity:0;cursor:pointer;outline:none}
+.radar .rhit.on{fill-opacity:.14}
+.radar .rhit:focus-visible{stroke:var(--brand);stroke-width:2}
+.rtip{position:absolute;z-index:3;pointer-events:none;background:var(--surface);color:var(--text);border:1px solid var(--line);
+  border-radius:10px;padding:8px 11px;font-size:13px;box-shadow:0 4px 18px rgba(0,0,0,.14);max-width:240px}
+.rtip .rv{font-weight:800}
+.rtip small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.tables2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px 28px;padding-top:4px}
+@media (max-width:600px){.radar .rl{font-size:17px}.radar .rl-top{font-size:18px}.radar .rt{font-size:13px}}
+nav a{white-space:nowrap}
+@media (max-width:420px){.bar{gap:8px}.logo{font-size:16px}nav{gap:0}nav a{padding:6px 7px;font-size:13px}}
+@media (max-width:600px){.pair{grid-template-columns:1fr}.pair .vs{text-align:center}}
+/* events */
+.ev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:14px}
+.ev{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .12s,border-color .12s}
+.ev:hover,.ev:focus-visible{transform:translateY(-2px);border-color:var(--brand);outline:0}
+.ev .poster{aspect-ratio:4/5;background:var(--surface-2);overflow:hidden;position:relative}
+.ev .poster img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.ev .poster .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:13px}
+.ev .badge{position:absolute;top:10px;left:10px;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--surface);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.ev .badge.live{background:var(--accent);color:#fff}
+.ev .badge.soon{background:var(--brand);color:#fff}
+.ev .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.ev h3{margin:0;font-size:15px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ev .when{font-size:13px;font-weight:700;color:var(--brand)}
+.ev .when .ocr{font-size:11.5px;font-weight:600;color:var(--muted)}
+.ev .when.unk{color:var(--muted);font-weight:600}
+.ev .meta{font-size:12px;color:var(--muted);margin-top:auto}
+.ev-note{font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:4px 0 6px}
+.toggle{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--muted);cursor:pointer;margin-left:auto}
+@media (max-width:420px){.logo b{display:none}}
+nav{min-width:0;overflow-x:auto;scrollbar-width:none}
+@media (max-width:340px){.logo{display:none}nav{margin-left:0}nav a{padding:6px 5px}}
+footer{color:var(--muted);font-size:12.5px;padding:30px 0 50px;text-align:center}
+@media (max-width:600px){nav a{padding:6px 9px}.logo span{display:none}.panel,.dhead{padding:16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="logo" href="#/">BUFS <b>전공 길잡이</b><span> · 부산외대</span></a>
+  <nav><a href="#/" data-nav="">전공 찾기</a><a href="#/quiz" data-nav="quiz">적합도 검사</a><a href="#/events" data-nav="events">행사</a><a href="#/sites" data-nav="sites">학교 사이트</a></nav>
+</div></header>
+<main class="wrap" id="app"></main>
+<footer class="wrap" id="foot"></footer>
+
+<script src="data.js"></script>
+<script src="quiz.js"></script>
+<script>
+const D = window.BUFS_DATA || {majors:[],sites:[]};
+const $app = document.getElementById('app');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const COLLEGES = [...new Set(D.majors.map(m => m.college))];
+let state = {q:'', college:'전체'};
+try { state.college = sessionStorage.getItem('college') || '전체'; } catch(e) {}
+
+document.getElementById('foot').innerHTML =
+  `데이터 출처: <a href="https://www.bufs.ac.kr" target="_blank" rel="noopener">부산외국어대학교 홈페이지</a> · 수집일 ${esc(D.crawledAt)}<br>`+
+  `학교 공식 사이트의 공개 정보를 자동 수집했어요. 최신 정보는 각 전공 홈페이지에서 꼭 확인하세요.`;
+
+const summary = m => {
+  const t = (m.intro || (m.sections.strengths[0]||{}).text || '').replace(/^.*학과\s*소개\s*/,'').replace(/\s+/g,' ');
+  return t.slice(0, 140);
+};
+
+// 검색창은 한 번만 만들고 결과 영역만 갱신한다 (입력창을 다시 그리면 한글 조합이 끊김)
+function renderList(){
+  $app.innerHTML = `
+    <section class="hero">
+      <h1>나에게 맞는 전공을 찾아보세요</h1>
+      <p>부산외대 ${D.majors.length}개 전공의 소개 · 교육과정 · 자격증 · 졸업 후 진로를 한곳에 모았어요.</p>
+      <div class="cta"><div><b>어떤 전공이 나와 맞을까?</b><span>관심사 · 성격 · 강점 · 가치관 문항으로 알아보는 전공 적합도 검사 (약 3분)</span></div>
+        <a class="btn btn-primary" href="#/quiz">검사 시작하기 →</a></div>
+    </section>
+    <div class="tools"><label class="search">🔎<input id="q" type="search" placeholder="전공명, 과목명, 키워드로 검색 (예: 파이썬, 경찰, 관광)" aria-label="검색"></label></div>
+    <div class="chips">${['전체',...COLLEGES].map(c=>`<button class="chip ${c===state.college?'on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</div>
+    <div id="results"></div>`;
+  const qi = document.getElementById('q');
+  qi.value = state.q;
+  qi.addEventListener('input', e => { state.q = e.target.value; renderResults(); });
+  $app.querySelectorAll('.chip').forEach(b => b.onclick = () => {
+    state.college = b.dataset.c; try{sessionStorage.setItem('college',state.college)}catch(e){}
+    $app.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x === b));
+    renderResults();
+  });
+  renderResults();
+}
+
+function renderResults(){
+  const $r = document.getElementById('results');
+  const q = state.q.trim().toLowerCase();
+  const hit = m => (state.college==='전체' || m.college===state.college) &&
+    (!q || (m.name+' '+m.college+' '+m.intro+' '+m.courses.map(c=>c.name).join(' ')).toLowerCase().includes(q));
+  const groups = COLLEGES.map(c => [c, D.majors.filter(m => m.college===c && hit(m))]).filter(g => g[1].length);
+  const total = groups.reduce((a,g)=>a+g[1].length,0);
+  $r.innerHTML = `
+    ${total ? groups.map(([c,ms]) => `
+      <div class="college">${esc(c)} <span>${ms.length}개</span></div>
+      <div class="grid">${ms.map(m => `
+        <button class="card" data-id="${esc(m.id)}">
+          <h3>${esc(m.name)}</h3>
+          <p>${esc(summary(m)) || '전공 소개를 확인해 보세요.'}</p>
+          <div class="tags">
+            ${m.courses.length?`<span class="tag">과목 ${m.courses.length}</span>`:''}
+            ${m.sections.certificates.length||m.certMentions.length?'<span class="tag">자격증</span>':''}
+            ${m.sections.careers.length?'<span class="tag">진로</span>':''}
+            ${m.faq.length?`<span class="tag">Q&A ${m.faq.length}</span>`:''}
+          </div>
+        </button>`).join('')}</div>`).join('') : `<div class="empty">'${esc(state.q)}'에 맞는 전공이 없어요.</div>`}`;
+  $r.querySelectorAll('.card').forEach(b => b.onclick = () => location.hash = '#/major/' + encodeURIComponent(b.dataset.id));
+}
+
+function textBlocks(items){
+  return items.map(s => `<h2>${esc(s.title)}</h2><div class="prose">${esc(s.text)}</div><div class="src"><a href="${esc(s.url)}" target="_blank" rel="noopener">원문 보기 ↗</a></div>`).join('');
+}
+
+function coursesHtml(m){
+  if(!m.courses.length) return `<p class="note">교육과정표를 자동으로 읽지 못했어요. 아래 원문 PDF에서 확인해 주세요.</p>`;
+  const byYear = {};
+  m.courses.forEach(c => { const k = c.year ? c.year+'학년' : '기타'; (byYear[k] ||= []).push(c); });
+  return Object.entries(byYear).map(([y, cs]) => `
+    <div class="year">${esc(y)}</div>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>학기</th><th>교과목명</th><th>이수구분</th><th>학점</th><th>과목코드</th></tr></thead><tbody>
+    ${cs.map(c=>`<tr><td class="c">${c.semester?c.semester+'학기':'-'}</td><td>${esc(c.name)}</td><td class="c">${esc(c.type||'')}</td><td class="c">${esc(c.credit||'')}</td><td class="c">${esc(c.code||'')}</td></tr>`).join('')}
+    </tbody></table></div>`).join('');
+}
+
+function renderMajor(id){
+  const m = D.majors.find(x => x.id === id);
+  if(!m){ $app.innerHTML = '<div class="empty">전공을 찾을 수 없어요. <a href="#/">목록으로</a></div>'; return; }
+  const S = m.sections;
+  const tabs = [
+    ['intro','전공 소개', 1],
+    ['curri','교육과정', m.courses.length || S.curriculum.length],
+    ['cert','자격증', S.certificates.length + m.certMentions.length],
+    ['career','진로·취업', S.careers.length + m.alumni.length],
+    ['faq','Q&A', m.faq.length],
+    ['prof','교수진', m.professors.length],
+  ].filter(t => t[2]);
+  let cur = tabs[0][0];
+  const body = {
+    intro: () => `${m.intro?`<h2>전공 소개</h2><div class="prose">${esc(m.intro)}</div>`:''}
+      ${textBlocks(S.strengths)}${textBlocks(S.competencies)}`,
+    curri: () => `${textBlocks(S.curriculum)}<h2>교육과정표</h2>
+      <p class="note">1학년은 글로벌자유전공학부에서 공통으로 공부하고, 2학년부터 전공을 선택해요. 표의 학년은 해당 과목을 듣는 학년이에요.</p>
+      ${coursesHtml(m)}
+      <div class="links" style="margin-top:14px">${m.curriculumPdf?`<a class="btn" href="${esc(m.curriculumPdf)}" target="_blank" rel="noopener">📄 교육과정 PDF 원문</a>`:''}
+      ${m.curriculumBoard?`<a class="btn" href="${esc(m.curriculumBoard)}" target="_blank" rel="noopener">교육과정 페이지 ↗</a>`:''}</div>`,
+    cert: () => `${textBlocks(S.certificates)}
+      ${m.certMentions.length?`<h2>자격증 관련 언급</h2><p class="note">전공 홈페이지 글(교육과정, 졸업생 인터뷰 등)에서 자격증이 언급된 문장을 모았어요.</p>
+      <ul class="list">${m.certMentions.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''}`,
+    career: () => `${textBlocks(S.careers)}
+      ${m.alumni.length?`<h2>선배들의 진로 이야기</h2>${m.alumni.map(a=>`<details><summary>${esc(a.title)}</summary><div class="prose">${esc(a.text)}</div></details>`).join('')}`:''}`,
+    faq: () => m.faq.map(f=>`<details><summary>${esc(f.q)}</summary><div class="prose">${esc(f.a)}</div></details>`).join(''),
+    prof: () => `<div class="profs">${m.professors.map(p=>`<div class="prof"><b>${esc(p.name)}</b><small>${esc((p.desc||'').slice(0,160))}</small></div>`).join('')}</div>`,
+  };
+  const draw = () => {
+    $app.innerHTML = `
+      <a class="back" href="#/">← 전공 목록</a>
+      <section class="dhead">
+        <div class="kicker">${esc(m.college)}</div>
+        <h1>${esc(m.name)}</h1>
+        <div class="links"><a class="btn" href="${esc(m.home)}" target="_blank" rel="noopener">🏠 전공 홈페이지</a></div>
+        <div class="tabs" role="tablist">${tabs.map(([k,l,n])=>`<button role="tab" data-t="${k}" class="${k===cur?'on':''}">${l}${k!=='intro'&&n?`<span class="n">${n}</span>`:''}</button>`).join('')}</div>
+      </section>
+      <section class="panel">${body[cur]() || '<p class="note">등록된 정보가 없어요.</p>'}</section>`;
+    $app.querySelectorAll('.tabs button').forEach(b => b.onclick = () => { cur = b.dataset.t; draw(); });
+  };
+  draw();
+  window.scrollTo(0,0);
+}
+
+function renderSites(){
+  const groups = {};
+  D.sites.forEach(s => (groups[s.source] ||= []).push(s));
+  const majorSites = D.majors.map(m => ({name:m.name, url:m.home}));
+  groups['전공 홈페이지'] = majorSites;
+  $app.innerHTML = `<section class="hero"><h1>부산외대 사이트 모음</h1><p>학교에서 운영하는 사이트를 한곳에 모았어요.</p></section>
+    ${Object.entries(groups).map(([g, ss]) => `<div class="college">${esc(g)} <span>${ss.length}개</span></div>
+      <div class="site-grid">${ss.map(s=>`<a class="site" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}<small>${esc(s.url.replace(/^https?:\/\//,''))}</small></a>`).join('')}</div>`).join('')}`;
+}
+
+/* ---------------- 행사 ---------------- */
+let evState = {board:'전체', past:false};
+const DAY = 864e5;
+const toDate = s => s ? new Date(s + 'T00:00:00') : null;
+const md = d => `${d.getMonth()+1}.${d.getDate()}`;
+function evStatus(e, today){
+  const st = toDate(e.start), en = toDate(e.end);
+  if(!st) return {k:'unk', label:'포스터 확인', when:'일정은 포스터·원문에서 확인'};
+  const range = +st === +en ? md(st) : `${md(st)} ~ ${md(en)}`;
+  if(en < today) return {k:'past', label:'종료', when:range};
+  if(st > today){ const n = Math.round((st - today)/DAY); return {k:'soon', label: n===1?'내일':`D-${n}`, when:range}; }
+  const left = Math.round((en - today)/DAY);
+  return {k:'live', label: left===0?'오늘까지':`진행 중 · ${left}일 남음`, when:range};
+}
+function renderEvents(){
+  const now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const evs = (D.events||[]).map(e => ({...e, s: evStatus(e, today)}));
+  const boards = ['전체', ...new Set(evs.map(e => e.board))];
+  const draw = () => {
+    const list = evs.filter(e => evState.board === '전체' || e.board === evState.board);
+    // 날짜를 못 찾은 글은 게시일이 45일 넘게 지나면 숨긴다
+    const fresh = e => (today - toDate(e.posted))/DAY <= 45;
+    const groups = [
+      ['진행 중', '기간 안에 있는 행사 · 모집 (마감 가까운 순)', list.filter(e => e.s.k==='live').sort((a,b) => a.end.localeCompare(b.end))],
+      ['진행 예정', '곧 시작하는 행사 (시작 가까운 순)', list.filter(e => e.s.k==='soon').sort((a,b) => a.start.localeCompare(b.start))],
+      ['최근 올라온 행사', '날짜를 자동으로 찾지 못한 글이에요. 일정은 포스터나 원문에서 확인하세요.', list.filter(e => e.s.k==='unk' && fresh(e))],
+    ];
+    if(evState.past) groups.push(['지난 행사', '기간이 끝난 글', list.filter(e => e.s.k==='past').sort((a,b) => b.end.localeCompare(a.end))]);
+    const card = e => `<a class="ev" href="${esc(e.url)}" target="_blank" rel="noopener">
+      <div class="poster">${e.img ? `<img src="${esc(e.img)}" alt="" loading="lazy">` : `<div class="ph">포스터 없음</div>`}
+        <span class="badge ${e.s.k}">${esc(e.s.label)}</span></div>
+      <div class="body"><h3>${esc(e.title)}</h3>
+        <div class="when ${e.s.k==='unk'?'unk':''}">${esc(e.s.when)}${e.ocr ? '<small class="ocr" title="포스터 이미지에서 글자를 자동으로 읽어 찾은 날짜예요. 틀릴 수 있으니 원문을 확인하세요."> · 포스터 자동 인식</small>' : ''}</div>
+        <div class="meta">${esc(e.board)} · 게시 ${esc(e.posted.slice(5).replace('-','.'))}</div></div></a>`;
+    const body = groups.filter(g => g[2].length).map(([h, sub, items]) =>
+      `<div class="college">${esc(h)} <span>${items.length}개</span></div><p class="note" style="margin:-4px 0 12px;color:var(--muted);font-size:13px">${esc(sub)}</p>
+       <div class="ev-grid">${items.map(card).join('')}</div>`).join('');
+    document.getElementById('evlist').innerHTML = body || '<div class="empty">조건에 맞는 행사가 없어요.</div>';
+  };
+  $app.innerHTML = `<section class="hero"><h1>부산외대 행사 · 모집</h1>
+      <p>지금 진행 중이거나 곧 열리는 특강, 공모전, 축제, 모집 소식을 모았어요.</p></section>
+    <div class="ev-note">학교 홈페이지의 행사·특강, 일반공지(행사성 글), 외부행사·공모전 게시판에서 모았어요 · 수집 ${esc(D.eventsAt||'')}<br>
+      '포스터 자동 인식' 날짜는 포스터 이미지에서 글자를 읽어 찾은 것이라 틀릴 수 있어요. 인스타그램은 로그인 없이 게시물을 받을 수 없어 자동 수집하지 않아요. 같은 행사는 대부분 홈페이지에도 공지돼요.</div>
+    <div class="tools"><div class="chips" style="margin:0">${boards.map(b=>`<button class="chip ${b===evState.board?'on':''}" data-b="${esc(b)}">${esc(b)}</button>`).join('')}</div>
+      <label class="toggle"><input type="checkbox" id="evpast" ${evState.past?'checked':''}> 지난 행사도 보기</label></div>
+    <div id="evlist"></div>`;
+  $app.querySelectorAll('[data-b]').forEach(b => b.onclick = () => {
+    evState.board = b.dataset.b;
+    $app.querySelectorAll('[data-b]').forEach(x => x.classList.toggle('on', x === b));
+    draw();
+  });
+  document.getElementById('evpast').onchange = e => { evState.past = e.target.checked; draw(); };
+  draw();
+  window.scrollTo(0, 0);
+}
+
+/* ---------------- 전공 적합도 검사 ---------------- */
+const Q = window.BUFS_QUIZ;
+const LIKERT = ['전혀 아니다','아니다','보통','그렇다','매우 그렇다'];
+const QSIG = Q.QUESTIONS.length + '-' + Q.PAIRS.length;
+const newQuiz = () => ({ v: QSIG, mode: null, step: 0, answers: {}, pairs: {}, conds: [], regions: [] });
+let quiz = newQuiz();
+try { const s = JSON.parse(sessionStorage.getItem('quiz')); if (s && s.v === QSIG) quiz = s; } catch(e) {}
+const saveQuiz = () => { try { sessionStorage.setItem('quiz', JSON.stringify(quiz)); } catch(e) {} };
+
+// 가치 선택 문항의 보기 문장: 같은 가치가 여러 번 나오면 phrases 를 돌아가며 사용
+const PAIR_TEXT = (() => {
+  const seen = {};
+  return Q.PAIRS.map(p => [p.a, p.b].map(v => { const k = seen[v] = (seen[v] ?? -1) + 1; return Q.VALUES[v].phrases[k % Q.VALUES[v].phrases.length]; }));
+})();
+
+const inMode = (item, mode) => mode === 'full' || item.quick;
+function quizSteps(mode){
+  return Q.SECTIONS.filter(s => !(s.fullOnly && mode !== 'full')).map(s => {
+    const items = s.kind === 'likert' ? Q.QUESTIONS.map((q, i) => i).filter(i => Q.QUESTIONS[i].sec === s.name && inMode(Q.QUESTIONS[i], mode))
+                : s.kind === 'pairs'  ? Q.PAIRS.map((p, i) => i).filter(i => inMode(Q.PAIRS[i], mode)) : [];
+    return { ...s, items };
+  }).filter(s => s.items.length || s.kind === 'conds' || s.kind === 'region');
+}
+const required = mode => {
+  const st = quizSteps(mode);
+  return { likert: st.filter(s => s.kind === 'likert').flatMap(s => s.items), pairs: st.filter(s => s.kind === 'pairs').flatMap(s => s.items) };
+};
+const progressOf = mode => {
+  const r = required(mode);
+  const done = r.likert.filter(i => quiz.answers[i]).length + r.pairs.filter(i => quiz.pairs[i]).length;
+  return { done, total: r.likert.length + r.pairs.length };
+};
+
+function renderQuizHome(){
+  const card = mode => {
+    const M = Q.MODES[mode], p = progressOf(mode);
+    const parts = mode === 'full'
+      ? ['흥미·성격·강점·가치관', '학습 스타일', '직업가치관 (둘 중 하나 고르기)', '현실 조건 (교직·자격증·해외연수 등)', 'Holland 흥미 코드(RIASEC)']
+      : ['핵심 흥미·성격 문항', '학습 스타일', '직업가치관', 'Holland 흥미 코드(RIASEC)'];
+    return `<div class="mode">
+      <div class="mode-top"><h2>${esc(M.label)}</h2><span class="tag">${p.total}문항 · ${esc(M.time)}</span></div>
+      <p>${esc(M.desc)}</p>
+      <ul class="list">${parts.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+      <div class="mode-btns">${
+        p.done >= p.total ? `<button class="btn btn-primary" data-result="${mode}">결과 보기</button><button class="btn" data-retake="${mode}">다시 검사하기</button>`
+        : p.done ? `<a class="btn btn-primary" href="#/quiz/${mode}">이어서 하기 (${p.done}/${p.total})</a><button class="btn" data-retake="${mode}">처음부터 다시</button>`
+        : `<a class="btn btn-primary" href="#/quiz/${mode}">시작하기 →</a>`}</div>
+    </div>`;
+  };
+  $app.innerHTML = `
+    <section class="hero"><h1>전공 적합도 검사</h1>
+      <p>나의 흥미, 성격, 강점, 가치관을 바탕으로 부산외대 ${Object.keys(Q.PROFILES).length}개 전공과의 적합도를 알려 드려요.</p></section>
+    <div class="modes">${card('quick')}${card('full')}</div>
+    <p class="note">빠른 검사에서 답한 문항은 정밀 검사에서도 그대로 이어져요. 빠른 검사 후 결과가 궁금하면 정밀 검사로 이어서 해 보세요.</p>`;
+  $app.querySelectorAll('[data-retake]').forEach(b => b.onclick = () => retake(b.dataset.retake));
+  $app.querySelectorAll('[data-result]').forEach(b => b.onclick = () => { quiz.mode = b.dataset.result; saveQuiz(); location.hash = '#/quiz/result'; });
+}
+
+// 이전 기록(답변·가치 선택·조건·지역)을 모두 지우고 처음부터 다시 시작
+function retake(mode){
+  askConfirm('이전 검사 기록이 모두 삭제돼요. 처음부터 다시 검사할까요?', '기록 지우고 다시 검사', () => {
+    quiz = newQuiz(); quiz.mode = mode; saveQuiz();
+    if (location.hash === '#/quiz/' + mode) { renderQuiz(mode); window.scrollTo(0, 0); }
+    else location.hash = '#/quiz/' + mode;
+  });
+}
+
+// 페이지 안에 그리는 확인창 (브라우저 confirm() 은 일부 환경에서 동작하지 않음)
+function askConfirm(msg, okLabel, onOk){
+  const wrap = document.createElement('div');
+  wrap.className = 'dlg-back';
+  wrap.innerHTML = `<div class="dlg" role="alertdialog" aria-modal="true" aria-labelledby="dlg-msg">
+    <p id="dlg-msg">${esc(msg)}</p>
+    <div class="dlg-btns"><button class="btn" data-x="no">취소</button><button class="btn btn-danger" data-x="ok">${esc(okLabel)}</button></div></div>`;
+  const close = () => { wrap.remove(); document.removeEventListener('keydown', onKey); };
+  const onKey = e => { if (e.key === 'Escape') close(); };
+  wrap.addEventListener('click', e => {
+    const x = e.target.dataset.x;
+    if (e.target === wrap || x === 'no') close();
+    else if (x === 'ok') { close(); onOk(); }
+  });
+  document.addEventListener('keydown', onKey);
+  document.body.appendChild(wrap);
+  wrap.querySelector('[data-x="no"]').focus();
+}
+
+function renderQuiz(mode){
+  if (quiz.mode !== mode) { quiz.mode = mode; quiz.step = 0; saveQuiz(); }
+  const steps = quizSteps(mode);
+  const step = Math.min(quiz.step || 0, steps.length - 1);
+  const cur = steps[step];
+  const last = step === steps.length - 1;
+  let body = '';
+  if (cur.kind === 'likert') {
+    body = cur.items.map(i => `<div class="qcard ${quiz.answers[i]?'done':''}" id="qc${i}"><p>${esc(Q.QUESTIONS[i].q)}</p>
+      <div class="likert" role="radiogroup" aria-label="문항">${LIKERT.map((l, v) => `
+        <label><input type="radio" name="q${i}" value="${v+1}" ${quiz.answers[i]===v+1?'checked':''}><span class="dot"></span>${l}</label>`).join('')}
+      </div></div>`).join('');
+  } else if (cur.kind === 'pairs') {
+    body = cur.items.map((i, n) => `<div class="qcard ${quiz.pairs[i]?'done':''}" id="qc${i}"><p class="note" style="margin:0 0 8px">${n+1}. 나는 이런 일이 더 좋다</p>
+      <div class="pair">${['a','b'].map((s, k) => `<button class="opt ${quiz.pairs[i]===s?'on':''}" data-p="${i}" data-s="${s}">${esc(PAIR_TEXT[i][k])}</button>`).join('<span class="vs">vs</span>')}</div></div>`).join('');
+  } else if (cur.kind === 'conds') {
+    body = `<div class="qcard"><div class="conds">${Q.CONDITIONS.map(c => `<label class="cond"><input type="checkbox" data-c="${c.id}" ${quiz.conds.includes(c.id)?'checked':''}> ${esc(c.label)}</label>`).join('')}</div></div>`;
+  } else {
+    body = `<div class="qcard"><div class="chips" style="margin:0">${Q.REGIONS.map((r, i) => `<button class="chip ${quiz.regions.includes(i)?'on':''}" data-r="${i}">${esc(r.label)}</button>`).join('')}</div></div>`;
+  }
+  $app.innerHTML = `
+    <a class="back" href="#/quiz">← 검사 선택</a>
+    <section class="hero" style="padding:4px 0 6px"><h1>${esc(Q.MODES[mode].label)}</h1></section>
+    <div class="progress"><div class="track"><div class="fill" id="pfill"></div></div><small id="ptext"></small></div>
+    <div class="steps">${steps.map((s, k) => `<span class="${k===step?'on':k<step?'past':''}">${esc(s.name)}</span>`).join('')}</div>
+    <p class="note" style="margin:0 0 8px">${esc(cur.desc)}</p>
+    ${body}
+    <div style="display:flex;gap:10px;justify-content:center;margin:24px 0 40px">
+      ${step > 0 ? '<button class="btn" id="prev">← 이전</button>' : ''}
+      <button class="btn btn-primary" id="next">${last ? '결과 보기' : '다음 →'}</button></div>`;
+  const update = () => {
+    const p = progressOf(mode);
+    document.getElementById('pfill').style.width = (p.done / p.total * 100) + '%';
+    document.getElementById('ptext').textContent = `${p.done} / ${p.total} 문항`;
+    const stepDone = cur.kind === 'likert' ? cur.items.every(i => quiz.answers[i]) : cur.kind === 'pairs' ? cur.items.every(i => quiz.pairs[i]) : true;
+    document.getElementById('next').disabled = last ? p.done < p.total : !stepDone;
+  };
+  const go = s => { quiz.step = s; saveQuiz(); renderQuiz(mode); window.scrollTo(0, 0); };
+  const focusNext = i => {
+    const answered = cur.kind === 'pairs' ? quiz.pairs : quiz.answers;
+    const nx = cur.items.find(j => j > i && !answered[j]);
+    if (nx !== undefined) document.getElementById('qc' + nx).scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+  $app.querySelectorAll('.likert input').forEach(inp => inp.onchange = () => {
+    const i = +inp.name.slice(1);
+    quiz.answers[i] = +inp.value; saveQuiz(); update();
+    document.getElementById('qc' + i).classList.add('done'); focusNext(i);
+  });
+  $app.querySelectorAll('.opt').forEach(b => b.onclick = () => {
+    const i = +b.dataset.p;
+    quiz.pairs[i] = b.dataset.s; saveQuiz();
+    b.parentElement.querySelectorAll('.opt').forEach(o => o.classList.toggle('on', o === b));
+    document.getElementById('qc' + i).classList.add('done'); update(); focusNext(i);
+  });
+  $app.querySelectorAll('[data-c]').forEach(c => c.onchange = () => {
+    quiz.conds = c.checked ? [...quiz.conds, c.dataset.c] : quiz.conds.filter(x => x !== c.dataset.c); saveQuiz();
+  });
+  $app.querySelectorAll('[data-r]').forEach(b => b.onclick = () => {
+    const i = +b.dataset.r;
+    quiz.regions = quiz.regions.includes(i) ? quiz.regions.filter(x => x !== i) : [...quiz.regions, i];
+    b.classList.toggle('on'); saveQuiz();
+  });
+  const prev = document.getElementById('prev'); if (prev) prev.onclick = () => go(step - 1);
+  document.getElementById('next').onclick = () => last ? (location.hash = '#/quiz/result') : go(step + 1);
+  update();
+}
+
+// 0~1 점수: 답한 문항만으로 가중평균 (음수 가중치는 '그렇다'일수록 감점)
+function weighted(keys, field){
+  const out = {};
+  for (const d of keys) {
+    let num = 0, den = 0;
+    Q.QUESTIONS.forEach((q, i) => {
+      const w = q[field] && q[field][d]; if (!w || !quiz.answers[i]) return;
+      const x = (quiz.answers[i] - 1) / 4;
+      num += Math.abs(w) * (w > 0 ? x : 1 - x); den += Math.abs(w);
+    });
+    out[d] = den ? num / den : null;
+  }
+  return out;
+}
+
+function scoreQuiz(){
+  const dims = weighted(Object.keys(Q.DIMS), 'w');
+  const learn = weighted(Object.keys(Q.LEARN), 'l');
+  const riasec = {};
+  for (const k in Q.RIASEC) {
+    let num = 0, den = 0;
+    for (const d in Q.DIMS) { const m = Q.DIMS[d].riasec[k] || 0; if (m && dims[d] != null) { num += m * dims[d]; den += m; } }
+    riasec[k] = den ? num / den : 0;
+  }
+  const values = {};
+  for (const v in Q.VALUES) {
+    let n = 0, picked = 0;
+    Q.PAIRS.forEach((p, i) => { if (!quiz.pairs[i]) return; if (p.a === v || p.b === v) { n++; if (p[quiz.pairs[i]] === v) picked++; } });
+    values[v] = n ? picked / n : null;
+  }
+  const regionMajors = new Set(quiz.regions.flatMap(i => Q.REGIONS[i].majors));
+  const hasLearn = Object.values(learn).some(x => x != null);
+  const results = D.majors.filter(m => Q.PROFILES[m.id]).map(m => {
+    const p = Q.PROFILES[m.id];
+    let num = 0, den = 0; const contrib = [];
+    for (const d in p) { if (d === 'L' || dims[d] == null) continue; num += p[d] * dims[d]; den += p[d]; contrib.push([d, p[d] * dims[d]]); }
+    const dimFit = den ? num / den : 0;
+    let learnFit = null;
+    const lg = Q.LEARN_GROUPS[p.L];
+    if (hasLearn && lg) { let a = 0, b = 0; for (const k in lg) if (learn[k] != null) { a += lg[k] * learn[k]; b += lg[k]; } learnFit = b ? a / b : null; }
+    let pct = (learnFit == null ? dimFit : dimFit * (1 - Q.LEARN_WEIGHT) + learnFit * Q.LEARN_WEIGHT) * 100;
+    const bonus = regionMajors.has(m.id);
+    if (bonus) pct += Q.REGION_BONUS;
+    contrib.sort((a, b) => b[1] - a[1]);
+    return { m, pct: Math.min(99, Math.round(pct)), why: contrib.slice(0, 2).map(c => Q.DIMS[c[0]].label), learnFit, bonus };
+  }).sort((a, b) => b.pct - a.pct);
+  return { dims, learn, riasec, values, results };
+}
+
+// 추천 전공의 수집된 글에서 조건 키워드가 들어간 문장을 찾는다
+function condHint(m, c){
+  if (c.id === 'cert' && m.sections.certificates.length) return m.sections.certificates[0].text;
+  const texts = [m.intro, ...Object.values(m.sections).flat().map(s => s.text), ...m.certMentions, ...m.faq.map(f => f.a)];
+  for (const t of texts) for (const s of (t || '').split(/(?<=[.다!?])\s+|\n+/)) {
+    if (s.length > 8 && c.keywords.some(k => s.includes(k))) return s;
+  }
+  return null;
+}
+const clip = (s, n) => { s = s.replace(/\s+/g, ' ').replace(/^[-·•\s]+/, '').trim(); return s.length > n ? s.slice(0, n) + '…' : s; };
+const bars = (entries, labelOf) => `<div class="dims">${entries.map(([k, s]) => `<div class="dim"><span>${esc(labelOf(k))}</span><div class="bar"><i style="width:${Math.round(s*100)}%"></i></div><em>${Math.round(s*100)}</em></div>`).join('')}</div>`;
+
+// 레이더 차트 (단일 시리즈). items: [{label, value(0~1), desc}], 축 순서는 고정 — 다시 검사해도 모양을 비교할 수 있게.
+// 점수 상위 3개 축만 라벨을 진하게 표시하고, 정확한 값은 툴팁과 '표로 보기'에서 확인한다.
+function radar(items, title){
+  const n = items.length, S = 440, c = S / 2, R = n > 8 ? 130 : 140;
+  const pt = (i, r) => { const a = -Math.PI / 2 + i * 2 * Math.PI / n; return [c + r * Math.cos(a), c + r * Math.sin(a)]; };
+  const poly = r => items.map((_, i) => pt(i, r).map(v => v.toFixed(1)).join(',')).join(' ');
+  const top3 = new Set([...items].map((it, i) => [it.value, i]).sort((a, b) => b[0] - a[0]).slice(0, 3).map(x => x[1]));
+  const data = items.map((it, i) => pt(i, Math.max(it.value, 0.02) * R));
+  const labels = items.map((it, i) => {
+    const [x, y] = pt(i, R + 18), cos = Math.cos(-Math.PI / 2 + i * 2 * Math.PI / n), sin = Math.sin(-Math.PI / 2 + i * 2 * Math.PI / n);
+    const anchor = cos > 0.25 ? 'start' : cos < -0.25 ? 'end' : 'middle';
+    const dy = sin < -0.6 ? -2 : sin > 0.6 ? 12 : 4;
+    return `<text x="${x.toFixed(1)}" y="${(y + dy).toFixed(1)}" text-anchor="${anchor}" class="${top3.has(i) ? 'rl-top' : 'rl'}">${esc(it.label)}</text>`;
+  }).join('');
+  return `<figure class="radar" role="img" aria-label="${esc(title)}: ${items.map(it => `${it.label} ${Math.round(it.value * 100)}점`).join(', ')}">
+    <figcaption>${esc(title)}</figcaption>
+    <svg viewBox="-40 0 ${S + 80} ${S}" aria-hidden="true">
+      ${[0.25, 0.5, 0.75, 1].map(f => `<polygon points="${poly(f * R)}" class="rg"/>`).join('')}
+      ${items.map((_, i) => { const [x, y] = pt(i, R); return `<line x1="${c}" y1="${c}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" class="rg"/>`; }).join('')}
+      <text x="${c + 4}" y="${(c - R / 2 - 3).toFixed(1)}" class="rt">50</text><text x="${c + 4}" y="${(c - R - 3).toFixed(1)}" class="rt">100</text>
+      <polygon points="${data.map(p => p.map(v => v.toFixed(1)).join(',')).join(' ')}" class="rarea"/>
+      ${data.map(([x, y]) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" class="rdot"/>`).join('')}
+      ${labels}
+      ${data.map(([x, y], i) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="16" class="rhit" data-i="${i}" tabindex="0"/>`).join('')}
+    </svg>
+    <div class="rtip" hidden></div>
+    <script type="application/json">${JSON.stringify(items).replace(/</g, '\\u003c')}<\/script>
+  </figure>`;
+}
+function bindRadars(root){
+  root.querySelectorAll('.radar').forEach(fig => {
+    const items = JSON.parse(fig.querySelector('script').textContent);
+    const tip = fig.querySelector('.rtip'), svg = fig.querySelector('svg');
+    const show = el => {
+      const it = items[+el.dataset.i];
+      tip.innerHTML = `<b>${esc(it.label)}</b> <span class="rv">${Math.round(it.value * 100)}점</span>${it.desc ? `<small>${esc(it.desc)}</small>` : ''}`;
+      const sb = svg.getBoundingClientRect(), fb = fig.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+      const k = sb.width / vb.width;
+      const x = sb.left - fb.left + (+el.getAttribute('cx') - vb.x) * k, y = sb.top - fb.top + (+el.getAttribute('cy') - vb.y) * k;
+      tip.hidden = false;
+      tip.style.left = Math.min(Math.max(x - tip.offsetWidth / 2, 0), fig.clientWidth - tip.offsetWidth) + 'px';
+      tip.style.top = (y - tip.offsetHeight - 14) + 'px';
+      el.classList.add('on');
+    };
+    const hide = el => { tip.hidden = true; el.classList.remove('on'); };
+    fig.querySelectorAll('.rhit').forEach(el => {
+      el.addEventListener('mouseenter', () => show(el)); el.addEventListener('mouseleave', () => hide(el));
+      el.addEventListener('focus', () => show(el)); el.addEventListener('blur', () => hide(el));
+      el.addEventListener('click', () => show(el));
+    });
+  });
+}
+
+function renderResult(){
+  const mode = quiz.mode || 'quick';
+  const p = progressOf(mode);
+  if (p.done < p.total) { location.hash = '#/quiz/' + mode; return; }
+  const { dims, learn, riasec, values, results } = scoreQuiz();
+  const rs = Object.entries(riasec).sort((a, b) => b[1] - a[1]);
+  const code = rs.slice(0, 3).map(r => r[0]).join('');
+  const dimList = Object.entries(dims).filter(d => d[1] != null).sort((a, b) => b[1] - a[1]);
+  const valList = Object.entries(values).filter(v => v[1] != null).sort((a, b) => b[1] - a[1]);
+  const learnList = Object.entries(learn).filter(v => v[1] != null).sort((a, b) => b[1] - a[1]);
+  const conds = Q.CONDITIONS.filter(c => quiz.conds.includes(c.id));
+  const top = results.slice(0, 5), rest = results.slice(5);
+  $app.innerHTML = `
+    <section class="hero"><div class="kicker" style="color:var(--accent);font-weight:700;font-size:13px">${esc(Q.MODES[mode].label)} 결과</div>
+      <h1>나의 흥미 코드는 <span style="color:var(--brand)">${code}</span></h1>
+      <p>${rs.slice(0, 3).map(r => `${Q.RIASEC[r[0]].label}(${r[0]})`).join(' · ')} 성향이 강해요.</p></section>
+
+    <section class="panel">
+      <div class="radars">
+        ${radar(Object.keys(Q.RIASEC).map(k => ({ label: `${Q.RIASEC[k].label}(${k})`, value: riasec[k], desc: Q.RIASEC[k].desc })), 'Holland 흥미 유형 (RIASEC)')}
+        ${radar(Object.keys(Q.DIMS).filter(d => dims[d] != null).map(d => ({ label: Q.DIMS[d].label, value: dims[d], desc: Q.DIMS[d].desc })), `나의 성향 ${dimList.length}가지`)}
+      </div>
+      <p class="note" style="text-align:center">꼭짓점에 마우스를 올리거나 눌러 보면 점수를 볼 수 있어요. RIASEC는 진로 상담에서 가장 널리 쓰이는 흥미 이론으로, 커리어넷·고용24 흥미검사 결과와 비교해 볼 수 있어요.</p>
+      <details><summary>점수 표로 보기</summary>
+        <div class="tables2"><div><b class="note">흥미 유형</b>${bars(rs, k => `${Q.RIASEC[k].label} ${k}`)}</div>
+        <div><b class="note">성향</b>${bars(dimList, k => Q.DIMS[k].label)}</div></div><div style="height:12px"></div></details>
+
+      <h2>나의 흥미 유형</h2>
+      <ul class="list">${rs.slice(0, 3).map(r => `<li><b>${Q.RIASEC[r[0]].label}(${r[0]})</b> — ${esc(Q.RIASEC[r[0]].desc)}</li>`).join('')}</ul>
+
+      <h2>나의 강한 성향</h2>
+      <ul class="list">${dimList.slice(0, 3).map(([d]) => `<li><b>${esc(Q.DIMS[d].label)}</b> — ${esc(Q.DIMS[d].desc)}</li>`).join('')}</ul>
+
+      ${valList.length ? `<h2>내가 중요하게 여기는 직업가치</h2>
+      <div class="vals">${valList.slice(0, 3).map(([v], i) => `<div class="val"><b>${i+1}. ${esc(Q.VALUES[v].label)}</b><small>어울리는 진로: ${esc(Q.VALUES[v].careers)}</small></div>`).join('')}</div>` : ''}
+
+      ${learnList.length ? `<h2>나에게 맞는 공부 방식</h2>
+      <ul class="list">${learnList.slice(0, 2).map(([k]) => `<li><b>${esc(Q.LEARN[k].label)}</b> — ${esc(Q.LEARN[k].desc)}</li>`).join('')}</ul>` : ''}
+    </section>
+
+    <section class="panel">
+      <h2>나와 잘 맞는 전공 TOP 5</h2>
+      <div class="rank">${top.map((r, i) => `
+        <a class="rcard" href="#/major/${encodeURIComponent(r.m.id)}"><div class="no">${i+1}</div>
+          <div><h3>${esc(r.m.name)}</h3><small>${esc(r.m.college)} · ${r.why.map(esc).join(', ')} 성향과 잘 맞아요${r.learnFit != null && r.learnFit >= .6 ? ' · 공부 방식도 잘 맞아요' : r.learnFit != null && r.learnFit < .4 ? ' · 공부 방식은 조금 다를 수 있어요' : ''}${r.bonus ? ' · 관심 지역 ✓' : ''}</small>
+          ${conds.length ? `<div class="hints">${conds.map(c => { const h = condHint(r.m, c); return `<div><b>${esc(c.short)}</b> ${h ? esc(clip(h, 110)) : '<span class="note">관련 정보를 찾지 못했어요. 전공 홈페이지에서 확인해 보세요.</span>'}</div>`; }).join('')}</div>` : ''}
+          </div>
+          <div class="pct">${r.pct}%</div></a>`).join('')}</div>
+      <h2>다른 전공 적합도</h2>
+      <div class="mini">${rest.map(r => `<a href="#/major/${encodeURIComponent(r.m.id)}">${esc(r.m.name)} <b>${r.pct}%</b></a>`).join('')}</div>
+    </section>
+
+    ${mode === 'quick' ? `<div class="cta"><div><b>더 정확한 결과가 궁금하다면?</b><span>정밀 검사로 이어서 하면 지금까지 답한 문항은 그대로 유지돼요. 현실 조건(교직·자격증·해외연수)별 맞춤 안내도 받을 수 있어요.</span></div>
+      <a class="btn btn-primary" href="#/quiz/full">정밀 검사 이어서 하기 →</a></div>` : ''}
+
+    <section class="panel">
+      <h2>더 알아보기</h2>
+      <div class="mini">${Q.LINKS.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join('')}</div>
+      <p class="note" style="margin-top:16px">※ 이 검사는 전공 탐색을 돕기 위한 간이 검사로, 표준화된 심리검사가 아니에요. 결과는 참고만 하고, 관심 가는 전공의 교육과정과 진로를 꼭 직접 살펴보세요.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px">
+        <button class="btn btn-primary" id="retake">다시 검사하기</button>
+        <a class="btn" href="#/quiz/${mode}" onclick="quiz.step=0;saveQuiz()">답변 수정하기</a>
+        <a class="btn" href="#/quiz">검사 선택으로</a>
+        <a class="btn" href="#/">전공 둘러보기</a></div>
+    </section>`;
+  document.getElementById('retake').onclick = () => retake(mode);
+  bindRadars($app);
+  window.scrollTo(0, 0);
+}
+
+function route(){
+  const h = location.hash;
+  const sec = h.startsWith('#/sites') ? 'sites' : h.startsWith('#/quiz') ? 'quiz' : h.startsWith('#/events') ? 'events' : '';
+  document.querySelectorAll('[data-nav]').forEach(a => a.classList.toggle('on', a.dataset.nav === sec));
+  if(h.startsWith('#/major/')) renderMajor(decodeURIComponent(h.slice(8)));
+  else if(h.startsWith('#/sites')) renderSites();
+  else if(h.startsWith('#/events')) renderEvents();
+  else if(h === '#/quiz/result') renderResult();
+  else if(h === '#/quiz/quick' || h === '#/quiz/full') { renderQuiz(h.slice(7)); window.scrollTo(0, 0); }
+  else if(h.startsWith('#/quiz')) { renderQuizHome(); window.scrollTo(0, 0); }
+  else renderList();
+}
+addEventListener('hashchange', route);
+route();
+</script>
+</body>
+</html>
