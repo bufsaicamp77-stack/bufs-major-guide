@@ -6,28 +6,36 @@
 <title>BUFS 전공 길잡이</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Roboto+Slab:wght@900&display=swap">
 <style>
 :root{
-  --bg:#f6f7fb; --surface:#fff; --surface-2:#eef1f8; --text:#16192b; --muted:#5d6380;
-  --line:#dde1ee; --brand:#1c23e8; --brand-soft:#e5e7ff; --accent:#d90077;
-  --radius:14px; --shadow:0 1px 2px rgba(20,25,60,.06),0 4px 16px rgba(20,25,60,.06);
+  /* 부산외대 심볼: 회색 #646464 + 노랑 #ffc600 */
+  --bg:#f5f5f2; --surface:#fff; --surface-2:#efefeb; --text:#222; --muted:#666;
+  --line:#e1e1dc; --brand:#555; --on-brand:#fff; --brand-soft:#fff2bf; --accent:#946f00; --yellow:#ffc600;
+  --hl:#ffc600; --hl-text:inherit; --logo-gray:#646464;
+  --radius:14px; --shadow:0 1px 2px rgba(30,30,20,.06),0 4px 16px rgba(30,30,20,.06);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f111a; --surface:#181b27; --surface-2:#222636; --text:#eceefa; --muted:#9aa0bd;
-  --line:#2c3145; --brand:#8f94ff; --brand-soft:#262a55; --accent:#ff5fae; --shadow:none; color-scheme:dark;}}
+  --bg:#1a1a1a; --surface:#242424; --surface-2:#2f2f2f; --text:#f2f2f0; --muted:#a9a9a5;
+  --line:#3a3a37; --brand:#ffc600; --on-brand:#1a1a1a; --brand-soft:#3b3420; --accent:#ffd44d; --yellow:#ffc600;
+  --hl:transparent; --hl-text:#ffc600; --shadow:none; color-scheme:dark;}}
 :root[data-theme="dark"]{
-  --bg:#0f111a; --surface:#181b27; --surface-2:#222636; --text:#eceefa; --muted:#9aa0bd;
-  --line:#2c3145; --brand:#8f94ff; --brand-soft:#262a55; --accent:#ff5fae; --shadow:none; color-scheme:dark;}
+  --bg:#1a1a1a; --surface:#242424; --surface-2:#2f2f2f; --text:#f2f2f0; --muted:#a9a9a5;
+  --line:#3a3a37; --brand:#ffc600; --on-brand:#1a1a1a; --brand-soft:#3b3420; --accent:#ffd44d; --yellow:#ffc600;
+  --hl:transparent; --hl-text:#ffc600; --shadow:none; color-scheme:dark;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);
   font-family:"Noto Sans KR",Pretendard,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6;word-break:keep-all}
 a{color:var(--brand)}
 .wrap{max-width:1120px;margin:0 auto;padding:0 16px}
-header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+header{background:var(--surface);border-bottom:1px solid var(--line);box-shadow:inset 0 3px 0 var(--yellow);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
 .bar{display:flex;align-items:center;gap:16px;height:60px}
-.logo{font-weight:800;font-size:18px;color:var(--text);text-decoration:none;white-space:nowrap}
-.logo b{color:var(--brand)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--text);text-decoration:none;white-space:nowrap}
+.logo b{color:var(--text)}
+.logo .sub{font-weight:600;color:var(--muted);font-size:15px}
+.mark{display:grid;grid-template-columns:1fr 1fr;width:34px;height:34px;padding:3px 4px;background:var(--logo-gray,#646464);border-radius:4px;
+  font:900 13px/1 "Roboto Slab",Georgia,serif;text-align:center;align-content:center;row-gap:2px;flex:0 0 auto}
+.mark i{font-style:normal;color:#fff}.mark i:nth-child(-n+2){color:#ffc600}
 nav{display:flex;gap:4px;margin-left:auto}
 nav a{padding:6px 12px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:600;font-size:14px}
 nav a.on{background:var(--brand-soft);color:var(--brand)}
@@ -41,7 +49,7 @@ nav a.on{background:var(--brand-soft);color:var(--brand)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 18px}
 .chip{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;
   padding:6px 13px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
-.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.on{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
 .college{margin:26px 0 10px;font-size:15px;color:var(--muted);font-weight:700;display:flex;gap:8px;align-items:center}
 .college span{font-weight:500;font-size:13px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
@@ -96,7 +104,7 @@ details .prose{padding-bottom:14px}
   border-radius:var(--radius);padding:16px 18px;margin-top:18px}
 .cta b{display:block}
 .cta span{color:var(--muted);font-size:14px}
-.btn-primary{background:var(--brand);border-color:var(--brand);color:#fff;cursor:pointer;font:inherit;font-weight:700}
+.btn-primary{background:var(--yellow);border-color:var(--yellow);color:#222;cursor:pointer;font:inherit;font-weight:700}
 .btn-primary:disabled{opacity:.45;cursor:not-allowed}
 .progress{position:sticky;top:calc(60px + env(safe-area-inset-top,0px));z-index:4;background:var(--bg);padding:10px 0}
 .progress .track{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
@@ -137,7 +145,7 @@ details .prose{padding-bottom:14px}
 .mode .btn{align-self:flex-start;margin-top:auto}
 .steps{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0 8px}
 .steps span{font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
-.steps span.on{background:var(--brand);color:#fff}
+.steps span.on{background:var(--brand);color:var(--on-brand)}
 .steps span.past{background:var(--brand-soft);color:var(--brand)}
 .pair{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:stretch}
 .pair .vs{align-self:center;color:var(--muted);font-size:12px;font-weight:700}
@@ -152,11 +160,11 @@ details .prose{padding-bottom:14px}
 .val small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
 .hints{margin-top:8px;display:grid;gap:4px;font-size:13px;color:var(--text)}
 .hints b{color:var(--accent);font-size:12px;margin-right:4px}
-.dlg-back{position:fixed;inset:0;z-index:20;background:rgba(10,12,30,.45);display:grid;place-items:center;padding:16px}
+.dlg-back{position:fixed;inset:0;z-index:20;background:rgba(20,20,20,.5);display:grid;place-items:center;padding:16px}
 .dlg{background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:var(--radius);padding:22px;max-width:380px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.25)}
 .dlg p{margin:0 0 18px;font-weight:600}
 .dlg-btns{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}
-.btn-danger{background:var(--accent);border-color:var(--accent);color:#fff;cursor:pointer;font:inherit;font-weight:700}
+.btn-danger{background:#c8402f;border-color:#c8402f;color:#fff;cursor:pointer;font:inherit;font-weight:700}
 .btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 .mode-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
 .radars{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:8px 20px;margin:4px 0 6px}
@@ -184,8 +192,8 @@ nav a{white-space:nowrap}
 /* home */
 .home-hero{padding:40px 0 8px}
 .home-hero h1{margin:0 0 8px;font-size:clamp(26px,5vw,40px);letter-spacing:-.03em;line-height:1.25}
-.home-hero h1 em{font-style:normal;color:var(--brand)}
-.home-hero p{margin:0 0 18px;color:var(--muted)}
+.home-hero h1 em{font-style:normal;color:var(--hl-text);background:linear-gradient(transparent 60%,var(--hl) 60%);padding:0 2px}
+.home-hero p{margin:0;color:var(--muted)}
 .home-hero form{max-width:560px}
 .shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;margin:26px 0 8px}
 .sc{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
@@ -209,8 +217,8 @@ nav a{white-space:nowrap}
 .ev .poster img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .ev .poster .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:13px}
 .ev .badge{position:absolute;top:10px;left:10px;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--surface);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.18)}
-.ev .badge.live{background:var(--accent);color:#fff}
-.ev .badge.soon{background:var(--brand);color:#fff}
+.ev .badge.live{background:var(--yellow);color:#222}
+.ev .badge.soon{background:var(--logo-gray,#646464);color:#fff}
 .ev .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
 .ev h3{margin:0;font-size:15px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .ev .when{font-size:13px;font-weight:700;color:var(--brand)}
@@ -223,12 +231,12 @@ nav a{white-space:nowrap}
 nav{min-width:0;overflow-x:auto;scrollbar-width:none}
 @media (max-width:340px){nav a{padding:6px 5px}}
 footer{color:var(--muted);font-size:12.5px;padding:30px 0 50px;text-align:center}
-@media (max-width:600px){nav a{padding:6px 9px}.logo span{display:none}.panel,.dhead{padding:16px}}
+@media (max-width:600px){nav a{padding:6px 9px}.logo .sub{display:none}.panel,.dhead{padding:16px}}
 </style>
 </head>
 <body>
 <header><div class="wrap bar">
-  <a class="logo" href="#/">BUFS <b>전공 길잡이</b><span> · 부산외대</span></a>
+  <a class="logo" href="#/" aria-label="BUFS 전공 길잡이 홈"><span class="mark" aria-hidden="true"><i>B</i><i>U</i><i>F</i><i>S</i></span><b>전공 길잡이</b><span class="sub">부산외대</span></a>
   <nav><a href="#/majors" data-nav="majors">전공 찾기</a><a href="#/quiz" data-nav="quiz">적합도 검사</a><a href="#/events" data-nav="events">행사</a><a href="#/sites" data-nav="sites">학교 사이트</a></nav>
 </div></header>
 <main class="wrap" id="app"></main>
@@ -382,23 +390,17 @@ function renderHome(){
     <section class="home-hero">
       <h1>부산외대 생활,<br><em>여기서</em> 한눈에</h1>
       <p>전공 정보부터 나에게 맞는 전공 찾기, 지금 열리는 행사까지 학교 공식 사이트의 정보를 모았어요.</p>
-      <form id="hq"><label class="search">🔎<input id="hqi" type="search" placeholder="전공명, 과목명, 키워드로 전공 검색" aria-label="전공 검색"></label></form>
     </section>
     <div class="shortcuts">
       <a class="sc" href="#/majors"><div class="ic">📚</div><div><b>전공 찾기</b><span><span class="num">${D.majors.length}개</span> 전공의 소개 · 교육과정 · 자격증 · 진로</span></div></a>
       <a class="sc" href="#/quiz"><div class="ic">🧭</div><div><b>전공 적합도 검사</b><span>흥미 · 성격 · 강점 · 가치관으로 나에게 맞는 전공 찾기 (약 3분)</span></div></a>
-      <a class="sc" href="#/events"><div class="ic">🎉</div><div><b>행사 · 모집</b><span>지금 진행 중 <span class="num">${live.length}개</span> · 곧 시작 <span class="num">${soon.length}개</span></span></div></a>
+      <a class="sc" href="#/events"><div class="ic">🎉</div><div><b>행사 및 공모전</b><span>지금 진행 중 <span class="num">${live.length}개</span> · 진행 예정 <span class="num">${soon.length}개</span></span></div></a>
       <a class="sc" href="#/sites"><div class="ic">🔗</div><div><b>학교 사이트</b><span>학사공지, 도서관, 증명서 발급 등 <span class="num">${D.sites.length + D.majors.length}개</span> 바로가기</span></div></a>
     </div>
     ${pick.length ? `<div class="sec-head"><h2>지금 열리는 행사</h2><a href="#/events">전체 보기 →</a></div>
       <div class="ev-grid ev-row">${pick.map(evCard).join('')}</div>` : ''}
     <div class="sec-head"><h2>단과대학별 전공</h2><a href="#/majors">전체 전공 →</a></div>
     <div class="chips">${counts.map(([c, n]) => `<button class="chip" data-c="${esc(c)}">${esc(c)} <span style="opacity:.7">${n}</span></button>`).join('')}</div>`;
-  document.getElementById('hq').onsubmit = e => {
-    e.preventDefault();
-    state.q = document.getElementById('hqi').value; state.college = '전체';
-    location.hash = '#/majors';
-  };
   $app.querySelectorAll('[data-c]').forEach(b => b.onclick = () => {
     state.q = ''; state.college = b.dataset.c; try{sessionStorage.setItem('college', state.college)}catch(e){}
     location.hash = '#/majors';
@@ -435,7 +437,7 @@ function renderEvents(){
     // 날짜를 못 찾은 글은 게시일이 45일 넘게 지나면 숨긴다
     const fresh = e => (today - toDate(e.posted))/DAY <= 45;
     const groups = [
-      ['진행 중', '기간 안에 있는 행사 · 모집 (마감 가까운 순)', list.filter(e => e.s.k==='live').sort((a,b) => a.end.localeCompare(b.end))],
+      ['진행 중', '기간 안에 있는 행사 · 공모전 (마감 가까운 순)', list.filter(e => e.s.k==='live').sort((a,b) => a.end.localeCompare(b.end))],
       ['진행 예정', '곧 시작하는 행사 (시작 가까운 순)', list.filter(e => e.s.k==='soon').sort((a,b) => a.start.localeCompare(b.start))],
       ['최근 올라온 행사', '날짜를 자동으로 찾지 못한 글이에요. 일정은 포스터나 원문에서 확인하세요.', list.filter(e => e.s.k==='unk' && fresh(e))],
     ];
@@ -446,7 +448,7 @@ function renderEvents(){
        <div class="ev-grid">${items.map(card).join('')}</div>`).join('');
     document.getElementById('evlist').innerHTML = body || '<div class="empty">조건에 맞는 행사가 없어요.</div>';
   };
-  $app.innerHTML = `<section class="hero"><h1>부산외대 행사 · 모집</h1>
+  $app.innerHTML = `<section class="hero"><h1>부산외대 행사 및 공모전</h1>
       <p>지금 진행 중이거나 곧 열리는 특강, 공모전, 축제, 모집 소식을 모았어요.</p></section>
     <div class="ev-note">학교 홈페이지의 행사·특강, 일반공지(행사성 글), 외부행사·공모전 게시판에서 모았어요 · 수집 ${esc(D.eventsAt||'')}<br>
       '포스터 자동 인식' 날짜는 포스터 이미지에서 글자를 읽어 찾은 것이라 틀릴 수 있어요. 인스타그램은 로그인 없이 게시물을 받을 수 없어 자동 수집하지 않아요. 같은 행사는 대부분 홈페이지에도 공지돼요.</div>
